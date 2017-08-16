@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './CameraBox.css';
 import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+
 
 class CameraBox extends Component {
     render () {
@@ -9,7 +11,7 @@ class CameraBox extends Component {
             <div className={`cameraBox ${colour}`}>
                 <h3 className="cameraBoxTitle">{this.props.camera.make}</h3>
                 <h4 className="cameraBoxSubtitle">{this.props.camera.model}</h4>
-                <button className="cameraBoxButton" disabled>More Info</button>
+                <Link to={`/cameras/${this.props.index + 1}`}><button className="cameraBoxButton">More Info</button></Link>
             </div>
         );
     }

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import CameraBox from './CameraBox';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+
 
 class CameraList extends Component {
     
@@ -37,7 +39,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         cameras: state.cameras.data,
     };

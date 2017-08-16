@@ -29,4 +29,29 @@ describe('ACTIONS', () => {
         });
     });
 
+describe('FETCH_ONECAMERA_REQUEST', () => {
+        it('returns the expected action', () => {
+            expect(actions.fetchOneCameraRequest()).to.eql({
+                type: types.FETCH_ONECAMERA_REQUEST
+            });
+        });
+    });
+
+    describe('FETCH_ONECAMERA_SUCCESS', () => {
+        it('returns the expected action', () => {
+            expect(actions.fetchOneCameraSuccess(['camera'])).to.eql({
+                type: types.FETCH_ONECAMERA_SUCCESS,
+                data: ['camera']
+            });
+        });
+    });
+
+    describe('FETCH_ONECAMERA_ERROR', () => {
+        it('returns the expected action', () => {
+            expect(actions.fetchOneCameraError('err')).to.eql({
+                type: types.FETCH_ONECAMERA_ERROR,
+                data: 'err'
+            });
+        });
+    });
 });

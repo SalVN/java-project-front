@@ -1,5 +1,5 @@
 import * as actions from '../src/actions/actions';
-import reducer from '../src/reducer/reducer';
+import reducer from '../src/reducer/cameras.reducer';
 import { expect } from 'chai';
 
 const initialState = {
