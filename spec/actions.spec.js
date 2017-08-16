@@ -29,7 +29,7 @@ describe('ACTIONS', () => {
         });
     });
 
-describe('FETCH_ONECAMERA_REQUEST', () => {
+    describe('FETCH_ONECAMERA_REQUEST', () => {
         it('returns the expected action', () => {
             expect(actions.fetchOneCameraRequest()).to.eql({
                 type: types.FETCH_ONECAMERA_REQUEST
@@ -50,6 +50,32 @@ describe('FETCH_ONECAMERA_REQUEST', () => {
         it('returns the expected action', () => {
             expect(actions.fetchOneCameraError('err')).to.eql({
                 type: types.FETCH_ONECAMERA_ERROR,
+                data: 'err'
+            });
+        });
+    });
+
+    describe('ADD_CAMERA_REQUEST', () => {
+        it('returns the expected action', () => {
+            expect(actions.addCameraRequest()).to.eql({
+                type: types.ADD_CAMERA_REQUEST
+            });
+        });
+    });
+
+    describe('ADD_CAMERA_SUCCESS', () => {
+        it('returns the expected action', () => {
+            expect(actions.addCameraSuccess(['camera'])).to.eql({
+                type: types.ADD_CAMERA_SUCCESS,
+                data: ['camera']
+            });
+        });
+    });
+
+    describe('ADD_CAMERA_ERROR', () => {
+        it('returns the expected action', () => {
+            expect(actions.addCameraError('err')).to.eql({
+                type: types.ADD_CAMERA_ERROR,
                 data: 'err'
             });
         });

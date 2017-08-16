@@ -69,3 +69,37 @@ export function fetchOneCameraError (err) {
         data: err
     };
 }
+
+export function addCamera (data) {
+    return function (dispatch) {
+        dispatch(addCameraRequest());
+        const url = `${API_URL}/cameras/-1`;
+        axios.post(url, data)
+        .then(res => {
+            dispatch(addCameraSuccess(res.data));
+        })
+        .catch(err => {
+            dispatch(addCameraError(err));
+        });
+    };
+}
+
+export function addCameraRequest () {
+    return {
+        type: types.ADD_CAMERA_REQUEST
+    };
+}
+
+export function addCameraSuccess (camera) {
+    return {
+        type: types.ADD_CAMERA_SUCCESS,
+        data: camera
+    };
+}
+
+export function addCameraError (error) {
+    return {
+        type: types.ADD_CAMERA_ERROR,
+        data: error
+    };
+}
