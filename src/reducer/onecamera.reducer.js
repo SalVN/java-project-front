@@ -3,7 +3,8 @@ import * as types from '../actions/types';
 const initialState = {
     data: [],
     loading: false,
-    error: null
+    error: null,
+    added: false
 };
 
 function reducer (prevState = initialState, action) {
@@ -11,6 +12,7 @@ function reducer (prevState = initialState, action) {
 if (action.type === types.FETCH_ONECAMERA_REQUEST) {
   const newState = Object.assign({}, prevState);
   newState.loading = true;
+  newState.added = false;
   return newState;
 }
 
@@ -18,6 +20,7 @@ if (action.type === types.FETCH_ONECAMERA_SUCCESS) {
     const newState = Object.assign({}, prevState);
     newState.data = action.data;
     newState.loading = false;
+    newState.added = false;
     return newState;
 }
 
@@ -26,12 +29,14 @@ if (action.type === types.FETCH_ONECAMERA_ERROR) {
     newState.error = action.data;
     newState.loading = false;
     newState.data = [];
+    newState.added = false;
     return newState;
 }
 
 if (action.type === types.ADD_CAMERA_REQUEST) {
   const newState = Object.assign({}, prevState);
   newState.loading = true;
+  newState.added = false;
   return newState;
 }
 
@@ -39,6 +44,7 @@ if (action.type === types.ADD_CAMERA_SUCCESS) {
     const newState = Object.assign({}, prevState);
     newState.data = [...newState.data, action.data];
     newState.loading = false;
+    newState.added = true;
     return newState;
 }
 
@@ -47,6 +53,7 @@ if (action.type === types.ADD_CAMERA_ERROR) {
     newState.error = action.data;
     newState.loading = false;
     newState.data = [];
+    newState.added = false;
     return newState;
 }
 

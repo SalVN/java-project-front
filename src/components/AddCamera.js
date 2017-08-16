@@ -1,6 +1,7 @@
- import React, { Component } from 'react';
+import React, { Component } from 'react';
 import './AddCamera.css';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
 import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom';
 
 
@@ -8,21 +9,24 @@ class AddCamera extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            submitted: false
+            added: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    componentWillReceiveProps () {
+        if (this.props.added) this.setState({added: true});
     }
     render() {
         return (
             <div>
-            {
-                this.state.submitted &&
-                <Redirect to='/cameras'/>
-            }
+                {
+                    this.props.added &&
+                    <Redirect to='/cameras' />
+                }
                 <h2>Add A Camera</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="make">Make: </label>
-                    <input id="make"/>
+                    <input id="make" />
                     <br />
                     <label htmlFor="cameraModel">Model: </label>
                     <input id="cameraModel" />
@@ -37,24 +41,30 @@ class AddCamera extends Component {
             </div>
         );
     }
-    handleSubmit (e) {
+    handleSubmit(e) {
         e.preventDefault();
         const newCamera = {};
         newCamera.make = e.target[0].value;
         newCamera.model = e.target[1].value;
         newCamera.megapixels = e.target[2].value;
-        // axios.post(`${API_URL}/cameras/-1`, newCamera)
-        // .then(() => {
-        //     this.setState({
-        //         submitted: true
-        //     });
-        // })
-        // .catch(err => {
-        //     console.log('err', err);
-        // });
         console.log(newCamera);
-
+        this.props.addCamera(newCamera);
     }
 }
 
-export default AddCamera;
+function mapDispatchToProps(dispatch) {
+    return {
+        addCamera: (camera) => {
+            dispatch(actions.addCamera(camera));
+        }
+    };
+}
+
+function mapStateToProps(state) {
+    return {
+        loading: state.onecamera.added,
+        added: state.onecamera.added
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCamera);

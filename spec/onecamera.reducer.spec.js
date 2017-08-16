@@ -19,6 +19,7 @@ describe('reducer', () => {
             const action = actions.fetchOneCameraRequest();
             const newState = reducer(initialState, action);
             expect(newState.loading).to.be.true;
+            expect(newState.added).to.be.false;
             expect(newState).to.not.equal(initialState);
         });
     });
@@ -28,6 +29,7 @@ describe('reducer', () => {
             const action = actions.fetchOneCameraSuccess(data);
             const newState = reducer(initialState, action);
             expect(newState.loading).to.be.false;
+            expect(newState.added).to.be.false;
             expect(newState.data).to.eql(data);
             expect(newState.data).to.not.equal(initialState.data);
             expect(newState).to.not.equal(initialState);
@@ -35,15 +37,16 @@ describe('reducer', () => {
     });
     describe('#action: FETCH_ONECAMERA_ERROR', () => {
         it('should update the reducer, but not change the initial state', () => {
-            const error = {error: 'error'};
+            const error = { error: 'error' };
             const action = actions.fetchOneCameraError(error);
             const newState = reducer(initialState, action);
             expect(newState.loading).to.be.false;
             expect(newState.error).to.eql(error);
+            expect(newState.added).to.be.false;
             expect(initialState.error).to.not.equal(error);
             expect(newState.data).to.eql([]);
             expect(newState).to.not.equal(initialState);
-            expect (newState.error).to.not.equal(initialState.error);
+            expect(newState.error).to.not.equal(initialState.error);
         });
     });
 
@@ -52,6 +55,7 @@ describe('reducer', () => {
             const action = actions.addCameraRequest();
             const newState = reducer(initialState, action);
             expect(newState.loading).to.be.true;
+            expect(newState.added).to.be.false;
             expect(newState).to.not.equal(initialState);
         });
     });
@@ -61,6 +65,7 @@ describe('reducer', () => {
             const action = actions.addCameraSuccess(data);
             const newState = reducer(initialState, action);
             expect(newState.loading).to.be.false;
+            expect(newState.added).to.be.true;
             expect(newState.data[0]).to.eql(data);
             expect(newState.data).to.not.equal(initialState.data);
             expect(newState).to.not.equal(initialState);
@@ -68,15 +73,16 @@ describe('reducer', () => {
     });
     describe('#action: ADD_CAMERA_ERROR', () => {
         it('should update the reducer, but not change the initial state', () => {
-            const error = {error: 'error'};
+            const error = { error: 'error' };
             const action = actions.addCameraError(error);
             const newState = reducer(initialState, action);
             expect(newState.loading).to.be.false;
+            expect(newState.added).to.be.false;
             expect(newState.error).to.eql(error);
             expect(initialState.error).to.not.equal(error);
             expect(newState.data).to.eql([]);
             expect(newState).to.not.equal(initialState);
-            expect (newState.error).to.not.equal(initialState.error);
+            expect(newState.error).to.not.equal(initialState.error);
         });
     });
 });
