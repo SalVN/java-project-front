@@ -6,7 +6,7 @@ import './Header.css';
 const Header = () => {
     return (
         <div className="AppHeader">
-            <h1 className="AppTitle">Cameras</h1>
+            <Link to='/cameras' style={{ textDecoration: 'none' }}><h1 className="AppTitle">Cameras</h1></Link>
             <Link to='/cameras/add'><button className="cameraAddButton">Add a Camera</button></Link>
         </div>
     );
