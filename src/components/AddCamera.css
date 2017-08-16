@@ -1,0 +1,13 @@
+.cameraReturnButton {
+  background-color: #0B3C5D;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.cameraAddButton {
+  background-color: #D9B310;
+  color: black;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
