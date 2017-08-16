@@ -1,0 +1,24 @@
+.cameraBox {
+    width: 20%;
+    margin: 1%;
+    padding: 20px;
+    border-radius: 5px;
+    float: left;
+}
+
+.cameraBoxButton {
+    padding: 5px 10px;
+    background-color: #1d2731;
+    border-radius: 5px;
+    color: white;
+}
+
+.even {
+    background-color: #D9B310;
+    color: black;
+}
+
+.odd {
+    background-color: #328CC1;
+    color: white;
+}
