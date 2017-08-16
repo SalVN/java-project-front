@@ -3,6 +3,7 @@
   color: white;
   border-radius: 5px;
   padding: 10px 20px;
+  font-size: 14px;
 }
 
 .cameraAddButton {
@@ -10,4 +11,23 @@
   color: black;
   border-radius: 5px;
   padding: 10px 20px;
+  font-size: 14px;
+}
+
+.cameraAddField {
+    width: 40%;
+    min-width: 250px;
+    height: 25px;
+    border-radius: 5%;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.validation {
+    color: red;
+}
+
+.input-errors {
+    color: red;
+    border: 2px solid red;
 }
