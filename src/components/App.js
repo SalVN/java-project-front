@@ -19,6 +19,7 @@ class App extends Component {
             <Route path='/cameras/add' component={AddCamera} />
             <Route path='/cameras/:cameraId' component={OneCamera} />
             <Route path='/404' component={ErrorPage} />
+            <Route component={ErrorPage} />
           </Switch>
         </div>
       </Router>
