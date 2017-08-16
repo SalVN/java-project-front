@@ -1,0 +1,16 @@
+.AppHeader {
+  height: 150px;
+  background-color: #0B3C5D;
+  width: 100%;
+  margin-top: -20px;
+}
+
+.AppTitle {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: white;
+  width: 100%;
+}
