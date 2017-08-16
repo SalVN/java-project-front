@@ -36,3 +36,36 @@ export function fetchCamerasError (err) {
         data: err
     };
 }
+
+export function fetchOneCamera (id) {
+    return function (dispatch) {
+        dispatch(fetchOneCameraRequest());
+        axios.get(`${API_URL}/cameras/${id}`)
+        .then(res => {
+            dispatch(fetchOneCameraSuccess(res.data));
+        })
+        .catch(err => {
+            dispatch(fetchOneCameraError(err));
+        });
+    };
+}
+
+export function fetchOneCameraRequest () {
+    return {
+        type: types.FETCH_ONECAMERA_REQUEST
+    };
+}
+
+export function fetchOneCameraSuccess (camera) {
+    return {
+        type: types.FETCH_ONECAMERA_SUCCESS,
+        data: camera
+    };
+}
+
+export function fetchOneCameraError (err) {
+    return {
+        type: types.FETCH_ONECAMERA_ERROR,
+        data: err
+    };
+}
