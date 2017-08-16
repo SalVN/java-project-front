@@ -29,6 +29,27 @@ if (action.type === types.FETCH_ONECAMERA_ERROR) {
     return newState;
 }
 
+if (action.type === types.ADD_CAMERA_REQUEST) {
+  const newState = Object.assign({}, prevState);
+  newState.loading = true;
+  return newState;
+}
+
+if (action.type === types.ADD_CAMERA_SUCCESS) {
+    const newState = Object.assign({}, prevState);
+    newState.data = [...newState.data, action.data];
+    newState.loading = false;
+    return newState;
+}
+
+if (action.type === types.ADD_CAMERA_ERROR) {
+    const newState = Object.assign({}, prevState);
+    newState.error = action.data;
+    newState.loading = false;
+    newState.data = [];
+    return newState;
+}
+
 else {
 return prevState;
 }

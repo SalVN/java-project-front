@@ -46,4 +46,37 @@ describe('reducer', () => {
             expect (newState.error).to.not.equal(initialState.error);
         });
     });
+
+    describe('#action: ADD_CAMERA_REQUEST', () => {
+        it('should set loading to true', () => {
+            const action = actions.addCameraRequest();
+            const newState = reducer(initialState, action);
+            expect(newState.loading).to.be.true;
+            expect(newState).to.not.equal(initialState);
+        });
+    });
+    describe('#action: ADD_CAMERA_SUCCESS', () => {
+        it('should update the reducer, but not change the initial state', () => {
+            const data = { camera: 'camera' };
+            const action = actions.addCameraSuccess(data);
+            const newState = reducer(initialState, action);
+            expect(newState.loading).to.be.false;
+            expect(newState.data[0]).to.eql(data);
+            expect(newState.data).to.not.equal(initialState.data);
+            expect(newState).to.not.equal(initialState);
+        });
+    });
+    describe('#action: ADD_CAMERA_ERROR', () => {
+        it('should update the reducer, but not change the initial state', () => {
+            const error = {error: 'error'};
+            const action = actions.addCameraError(error);
+            const newState = reducer(initialState, action);
+            expect(newState.loading).to.be.false;
+            expect(newState.error).to.eql(error);
+            expect(initialState.error).to.not.equal(error);
+            expect(newState.data).to.eql([]);
+            expect(newState).to.not.equal(initialState);
+            expect (newState.error).to.not.equal(initialState.error);
+        });
+    });
 });
