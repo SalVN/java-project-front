@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './AddCamera.css';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
-import {every} from 'underscore';
+import { every } from 'underscore';
 import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom';
 
 function validate(state) {
@@ -42,14 +42,18 @@ class AddCamera extends Component {
                 model: '',
                 megapixels: ''
             },
-            invalidEntries: false
+            invalidEntries: false,
+            serverMessage: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeMake = this.handleChangeMake.bind(this);
         this.handleChangeModel = this.handleChangeModel.bind(this);
         this.handleChangeMegapixels = this.handleChangeMegapixels.bind(this);
     }
-    componentWillReceiveProps() {
+    componentWillReceiveProps(newProps) {
+        if (newProps.error) {
+            this.setState({invalidEntries: true, serverMessage: newProps.error.response.data.errors[0].defaultMessage });
+        }
         if (this.props.added) this.setState({ added: true });
     }
     render() {
@@ -59,7 +63,11 @@ class AddCamera extends Component {
         return (
             <div>
                 {this.state.invalidEntries &&
-                    <h3 className="validation">Unable to submit form</h3>
+                    <div>
+                        <h3 className="validation">Unable to submit form</h3>
+                        <p className="validation">{this.state.serverMessage}</p>
+                    </div>
+
                 }
                 {
                     this.props.added &&
@@ -97,9 +105,9 @@ class AddCamera extends Component {
             newCamera.model = e.target[1].value;
             newCamera.megapixels = e.target[2].value;
             this.props.addCamera(newCamera);
-            
+
         } else {
-            this.setState({invalidEntries: true});
+            this.setState({ invalidEntries: true });
         }
 
     }
@@ -144,7 +152,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
     return {
         loading: state.onecamera.added,
-        added: state.onecamera.added
+        added: state.onecamera.added,
+        error: state.onecamera.error
     };
 }
 
