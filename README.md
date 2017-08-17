@@ -101,7 +101,7 @@ TESTING
 
 ### Authors
 
-[Sally Newell](salvn)
+[Sally Newell](https://github.com/SalVN/)
 
 ### Acknowledgments
 
