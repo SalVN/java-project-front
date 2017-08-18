@@ -3,6 +3,7 @@ import './OneCamera.css';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 
 class OneCamera extends Component {
     constructor(props) {
@@ -11,14 +12,13 @@ class OneCamera extends Component {
             gotData: false,
             noData: false
         };
+        this.deleteHandler = this.deleteHandler.bind(this);
     }
     componentWillReceiveProps(newProps) {
-        console.log('received')
         if (!this.state.gotData) {
             this.setState({gotData: true});
         }
         else if (newProps.camera.megapixels === undefined) {
-            console.log(this.props.camera);
             this.setState({ noData: true });
         }
     }
@@ -34,7 +34,7 @@ class OneCamera extends Component {
                {
                 (this.props.loading)
                         ?
-                        <p>Loading</p>
+                        <ReactLoading type='bubbles'/>
                 :
                         <div>
                     <h1>{this.props.camera.make}</h1>
@@ -43,9 +43,13 @@ class OneCamera extends Component {
                 </div>
                 }
                 <Link to='/cameras'><button className="cameraPageButton">Return to Cameras</button></Link>
+                <button className="cameraPageDeleteButton" onClick={this.deleteHandler}>Delete Camera</button>
 
             </div>
         );
+    }
+    deleteHandler () {
+        console.log('clicked');
     }
 }
 

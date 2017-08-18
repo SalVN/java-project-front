@@ -9,6 +9,7 @@ export function fetchCameras () {
         dispatch(fetchCamerasRequest());
         axios.get(`${API_URL}/cameras`)
         .then(res => {
+            console.log(res);
             dispatch(fetchCamerasSuccess(res.data));
         })
         .catch(err => {
@@ -100,6 +101,41 @@ export function addCameraSuccess (camera) {
 export function addCameraError (error) {
     return {
         type: types.ADD_CAMERA_ERROR,
+        data: error
+    };
+}
+
+export function deleteCamera (id) {
+    return function (dispatch) {
+        dispatch(deleteCameraRequest());
+        const url = `${API_URL}/cameras/${id}`;
+        axios.delete(url)
+        .then(res => {
+            console.log(res.data);
+            dispatch(deleteCameraSuccess(res.data));
+        })
+        .catch(err => {
+            dispatch(deleteCameraError(err));
+        });
+    };
+}
+
+export function deleteCameraRequest () {
+    return {
+        type: types.DELETE_CAMERA_REQUEST
+    };
+}
+
+export function deleteCameraSuccess (res) {
+    return {
+        type: types.DELETE_CAMERA_SUCCESS,
+        data: res
+    };
+}
+
+export function deleteCameraError (error) {
+    return {
+        type: types.DELETE_CAMERA_ERROR,
         data: error
     };
 }

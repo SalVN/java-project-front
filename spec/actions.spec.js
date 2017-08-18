@@ -80,4 +80,31 @@ describe('ACTIONS', () => {
             });
         });
     });
+
+
+    describe('DELETE_CAMERA_REQUEST', () => {
+        it('returns the expected action', () => {
+            expect(actions.deleteCameraRequest()).to.eql({
+                type: types.DELETE_CAMERA_REQUEST
+            });
+        });
+    });
+
+    describe('DELETE_CAMERA_SUCCESS', () => {
+        it('returns the expected action', () => {
+            expect(actions.deleteCameraSuccess(['deleted'])).to.eql({
+                type: types.DELETE_CAMERA_SUCCESS,
+                data: ['deleted']
+            });
+        });
+    });
+
+    describe('DELETE_CAMERA_ERROR', () => {
+        it('returns the expected action', () => {
+            expect(actions.deleteCameraError('err')).to.eql({
+                type: types.DELETE_CAMERA_ERROR,
+                data: 'err'
+            });
+        });
+    });
 });
