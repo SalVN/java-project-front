@@ -23,7 +23,6 @@ if (action.type === types.FETCH_ONECAMERA_SUCCESS) {
     newState.data = action.data;
     newState.loading = false;
     newState.added = false;
-    console.log(newState);
     return newState;
 }
 

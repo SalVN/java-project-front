@@ -11,7 +11,7 @@ class CameraBox extends Component {
             <div className={`cameraBox ${colour}`}>
                 <h3 className="cameraBoxTitle">{this.props.camera.make}</h3>
                 <h4 className="cameraBoxSubtitle">{this.props.camera.model}</h4>
-                <Link to={`/cameras/${this.props.index + 1}`}><button className="cameraBoxButton">More Info</button></Link>
+                <Link to={`/cameras/${this.props.camera.cameraId}`}><button className="cameraBoxButton">More Info</button></Link>
             </div>
         );
     }

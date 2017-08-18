@@ -10,7 +10,8 @@ class OneCamera extends Component {
         super(props);
         this.state = {
             gotData: false,
-            noData: false
+            noData: false,
+            deleted: false
         };
         this.deleteHandler = this.deleteHandler.bind(this);
     }
@@ -18,7 +19,9 @@ class OneCamera extends Component {
         if (!this.state.gotData) {
             this.setState({gotData: true});
         }
-        else if (newProps.camera.megapixels === undefined) {
+        if (newProps.deleted) {
+            this.setState({deleted: true});
+        } else if (newProps.camera.megapixels === undefined) {
             this.setState({ noData: true });
         }
     }
@@ -30,6 +33,9 @@ class OneCamera extends Component {
             <div>
                 {this.state.noData &&
                     <Redirect to='/404'/>
+                }
+                {this.state.deleted && 
+                    <Redirect to='/cameras'/>
                 }
                {
                 (this.props.loading)
@@ -49,14 +55,15 @@ class OneCamera extends Component {
         );
     }
     deleteHandler () {
-        console.log('clicked');
+        this.props.deleteCamera(this.props.match.params.cameraId);
     }
 }
 
 function mapStateToProps(state) {
     return {
         camera: state.onecamera.data,
-        loading: state.onecamera.loading
+        loading: state.onecamera.loading,
+        deleted: state.onecamera.deleted
     };
 }
 
@@ -64,6 +71,9 @@ function mapDispatchToProps(dispatch) {
     return {
         fetchOneCamera: (id) => {
             dispatch(actions.fetchOneCamera(id));
+        },
+        deleteCamera: (id) => {
+            dispatch(actions.deleteCamera(id));
         }
     };
 }
