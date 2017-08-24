@@ -31,9 +31,9 @@ class OneCamera extends Component {
     render() {
         return (
             <div>
-                {this.state.noData &&
+                {/*{this.state.noData &&
                     <Redirect to='/404'/>
-                }
+                }*/}
                 {this.state.deleted && 
                     <Redirect to='/cameras'/>
                 }
