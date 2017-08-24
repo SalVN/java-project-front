@@ -3,7 +3,7 @@ node {
       git 'https://github.com/SalVN/java-project-front.git'
    }
       stage('Install NPM') {
-         sh "npm install --unsafe-perm"
+         sh "npm install"
       }
       stage('Build NPM') {
          sh "npm run build"
