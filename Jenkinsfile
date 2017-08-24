@@ -1,7 +1,13 @@
 node {
    stage('Preparation') {
-      git 'https://github.com/SalVN/java-project-back.git'
+      git 'https://github.com/SalVN/java-project-front.git'
    }
+      stage('Clean') {
+         sh "npm -Dnpm.test.failure.ignore clean"
+      }
+      stage('Package') {
+         sh "npm -Dmaven.test.failure.ignore package"
+      }
       stage('Docker Build') {
          sh "docker build -t myapp ."
       }
