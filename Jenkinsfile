@@ -2,7 +2,7 @@ node {
    stage('Preparation') {
       git 'https://github.com/SalVN/java-project-front.git'
    }
-        stage('Docker Build') {
+   stage('Docker Build') {
       sh "docker build -t myfrontend ."
    }
 
