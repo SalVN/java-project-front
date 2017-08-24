@@ -9,21 +9,14 @@ class OneCamera extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            gotData: false,
-            noData: false,
             deleted: false
         };
         this.deleteHandler = this.deleteHandler.bind(this);
     }
     componentWillReceiveProps(newProps) {
-        if (!this.state.gotData) {
-            this.setState({gotData: true});
-        }
         if (newProps.deleted) {
             this.setState({deleted: true});
-        } else if (newProps.camera.megapixels === undefined) {
-            this.setState({ noData: true });
-        }
+        } 
     }
     componentDidMount() {
         this.props.fetchOneCamera(this.props.match.params.cameraId);
@@ -31,9 +24,6 @@ class OneCamera extends Component {
     render() {
         return (
             <div>
-                {this.state.noData &&
-                    <Redirect to='/404'/>
-                }
                 {this.state.deleted && 
                     <Redirect to='/cameras'/>
                 }
