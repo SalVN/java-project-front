@@ -151,7 +151,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
     return {
-        loading: state.onecamera.added,
+        loading: state.onecamera.loading,
         added: state.onecamera.added,
         error: state.onecamera.error
     };
