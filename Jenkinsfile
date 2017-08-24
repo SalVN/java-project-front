@@ -16,6 +16,6 @@ node {
            sh "docker rm myapp || true"
       }
        stage('Docker Deploy') {
-           sh "docker run -d --name myapp -p 6061:6060 myapp"
+           sh "docker run -d --name myapp -p 80:80 myapp"
       }
 }
