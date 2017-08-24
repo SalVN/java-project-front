@@ -12,6 +12,6 @@ node {
    }
 
   stage('Docker Deploy') {
-      sh "docker run -d --name myfrontend -p 80:80 myfrontend"
+      sh "docker run -d --name myfrontend -p 80:9092 myfrontend"
    }
 }
