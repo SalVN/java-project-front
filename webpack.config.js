@@ -33,7 +33,7 @@ module.exports = {
     publicPath: '/js/',
     disableHostCheck: true,
     host: '0.0.0.0',
-    port: 9091,
+    port: 9092,
     historyApiFallback: true
   }
 };
