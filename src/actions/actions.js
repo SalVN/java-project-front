@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import * as types from './types';
 
-const API_URL = 'http://localhost:6060';
+import {API_URL} from '../../config';
 
 export function fetchCameras () {
     return function (dispatch) {
